@@ -73,18 +73,18 @@
             let kv= ((fv-32)*5/9)+273.15;
             return kv;
         }
-        //signature value
+        //signature value//
         function convert(){
-                // signatrue value from select tag
+                // signatrue value from select tag//
                 let fr = document.getElementById("frtem")[document.getElementById("frtem").selectedIndex];
                 fr =fr.value;
                 let to = document.getElementById("totem")[document.getElementById("totem").selectedIndex];
                 to =to.value;
-                // signature value from Temperature input tag
+                // signature value from Temperature input tag//
                 let t = document.getElementById("temperature");
                 t=parseFloat(t.value);
                 console.log(t);
-                //Choose temperature, that convert from and convert to
+                //Choose temperature, that convert from and convert to//
             switch (fr){
                 case "c":
                     switch (to){
@@ -94,7 +94,9 @@
                         case "k":
                             t=ctok(t);
                             break;
-                            break; }
+                        default:
+                            t=t;}
+                    break;
                 case "k":
                         switch (to){
                             case "c":
@@ -103,7 +105,9 @@
                             case "f":
                                 t=ktof(t);
                                 break;
-                        break;}
+                            default:
+                                t=t;}
+                    break;
                 case "f":
                         switch (to){
                             case "c":
@@ -112,10 +116,8 @@
                             case "k":
                                 t=ftok(t);
                                 break;
-                          break;}
-
-                default:
-                        t=t;
+                            default:
+                                t=t;}
                     break;}
             document.getElementById("output").innerHTML = t;
         }
