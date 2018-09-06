@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature-converter</title>
+</head>
+<body>
+<form>
+    <table>
+        <tr>
+            <td><laber>Temperature</laber></td>
+            <td><laber>From:</laber></td>
+            <td><laber>To:</laber></td>
+         </tr>
+        <tr>
+
+
+            <td><input id="temperature" type="number" ></td>
+
+
+            <td>
+                <select id="frtem">
+                    <option value="c">Celcius</option>
+                    <option value="f">Fahrenheit</option>
+                    <option value="k">Kenvil</option>
+                </select>
+            </td>
+
+            <td>
+                <select id="totem">
+                    <option value="c">Celcius</option>
+                    <option value="f">Fahrenheit</option>
+                    <option value="k">Kenvil</option>
+                </select>
+            </td>
+
+            <td>
+                <input  type="button"
+                        onclick = "convert()"
+                        value="Convert">
+            </td>
+        </tr>
+    </table>
+    <br>
+    Result:
+    <output id="output"></output>
+</form>
+<script>
+        //Converted to Cencius
+        function ftoc(fv){
+            let cv = (fv-32)*5/9;
+            return cv;
+            }
+        function ctoc(cv){
+            let cv = c;
+            return cv;
+        }
+        function ktoc(kv){
+            let cv = kv-273.15;
+            return cv;
+        }
+        //Converted from Cencius
+        function ctof(cv){
+            let fv = cv*5/9+32;
+            return fv;
+        }
+        function ctoc(cv){
+            let cv = c;
+            return cv;
+        }
+        function ctok(cv){
+            let kv = cv+273.15;
+            return cv;
+        }
+        //Converted from Fahrenheit and reflect
+        function ktof (kv){
+            let fv= (kv-273.15)*5/9+32;
+            return fv;
+        }
+        function ftok (fv){
+            let kv= (fv-32)*5/9+273.15;
+            return kv;
+        }
+        //signature value
+        function convert(){
+                // signatrue value from select tag
+                let fr = document.getElementById("frtem")[document.getElementById("frtem").selectedIndex];
+                let fr =fr.value;
+                let to = document.getElementById("totem")[document.getElementById("totem").selectedIndex];
+                let to =to.value;
+                // signature value from Temperature input tag
+                let t = document.getElementById("temperature");
+                t=parseFloat(t.value);
+                //Choose temperature, that convert from and convert to
+                switch (fr){
+                    case "k":
+                        switch (to){
+                            case "c":
+                                t=t*ktoc(t);
+                                break;
+                            case "f":
+                                t=t*ktof(t);
+                                break;
+                            case "c":
+                                t=t;
+                                break;
+                        }
+                    case "f":
+                        switch (to){
+                            case "c":
+                                t=t*ftoc(t);
+                                break;
+                            case "k":
+                                t=t*ftok(t);
+                                break;
+                            case "f":
+                                t=t;
+                                break;
+                        }
+                    case "c":
+                        switch (to){
+                            case "f":
+                                t=t*ctof(t);
+                                break;
+                            case "k":
+                                t=t*ctok(t);
+                                break;
+                            case "c":
+                                t=t;
+                                break;
+                        }
+                }
+            document.getElementById("output").innerHTML = t;
+        }
+</script>
+</body>
+</html>
