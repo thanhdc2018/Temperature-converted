@@ -48,33 +48,25 @@
 <script>
         //Converted to Cencius
         function ftoc(fv){
-            let cv = (fv-32)*5/9;
+            let cv = (fv-32)/1.8;
             return cv;
             }
-        function ctoc(cv){
-            let cv = c;
-            return cv;
-        }
         function ktoc(kv){
             let cv = kv-273.15;
             return cv;
         }
         //Converted from Cencius
         function ctof(cv){
-            let fv = cv*5/9+32;
+            let fv = cv*1.8+32;
             return fv;
-        }
-        function ctoc(cv){
-            let cv = c;
-            return cv;
         }
         function ctok(cv){
             let kv = cv+273.15;
-            return cv;
+            return kv;
         }
         //Converted from Fahrenheit and reflect
         function ktof (kv){
-            let fv= (kv-273.15)*5/9+32;
+            let fv= (kv-273.15)*1.8+32;
             return fv;
         }
         function ftok (fv){
@@ -85,50 +77,44 @@
         function convert(){
                 // signatrue value from select tag
                 let fr = document.getElementById("frtem")[document.getElementById("frtem").selectedIndex];
-                let fr =fr.value;
+                fr =fr.value;
                 let to = document.getElementById("totem")[document.getElementById("totem").selectedIndex];
-                let to =to.value;
+                to =to.value;
                 // signature value from Temperature input tag
                 let t = document.getElementById("temperature");
                 t=parseFloat(t.value);
+                console.log(t);
                 //Choose temperature, that convert from and convert to
-                switch (fr){
+            switch (fr){
                     case "k":
                         switch (to){
                             case "c":
-                                t=t*ktoc(t);
+                                t=ktoc(t);
                                 break;
                             case "f":
-                                t=t*ktof(t);
-                                break;
-                            case "c":
-                                t=t;
+                                t=ktof(t);
                                 break;
                         }
                     case "f":
                         switch (to){
                             case "c":
-                                t=t*ftoc(t);
+                                t=ftoc(t);
                                 break;
                             case "k":
-                                t=t*ftok(t);
+                                t=ftok(t);
                                 break;
-                            case "f":
-                                t=t;
-                                break;
-                        }
+                          }
                     case "c":
                         switch (to){
                             case "f":
-                                t=t*ctof(t);
+                                t=ctof(t);
                                 break;
                             case "k":
-                                t=t*ctok(t);
-                                break;
-                            case "c":
-                                t=t;
+                                t=ctok(t);
                                 break;
                         }
+                default:
+                    t=t;
                 }
             document.getElementById("output").innerHTML = t;
         }
