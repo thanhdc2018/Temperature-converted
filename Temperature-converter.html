@@ -46,7 +46,7 @@
     <output id="output"></output>
 </form>
 <script>
-        //Converted to Cencius
+        //Converted to Cencius//
         function ftoc(fv){
             let cv = (fv-32)/1.8;
             return cv;
@@ -55,22 +55,22 @@
             let cv = kv-273.15;
             return cv;
         }
-        //Converted from Cencius
+        //Converted to Fahrenheit//
         function ctof(cv){
             let fv = cv*1.8+32;
             return fv;
         }
+        function ktof (kv){
+            let fv= ((kv-273.15)*1.8)+32;
+            return fv;
+        }
+        //Converted to Kenvil//
         function ctok(cv){
             let kv = cv+273.15;
             return kv;
         }
-        //Converted from Fahrenheit and reflect
-        function ktof (kv){
-            let fv= (kv-273.15)*1.8+32;
-            return fv;
-        }
         function ftok (fv){
-            let kv= (fv-32)*5/9+273.15;
+            let kv= ((fv-32)*5/9)+273.15;
             return kv;
         }
         //signature value
@@ -86,7 +86,16 @@
                 console.log(t);
                 //Choose temperature, that convert from and convert to
             switch (fr){
-                    case "k":
+                case "c":
+                    switch (to){
+                        case "f":
+                            t=ctof(t);
+                            break;
+                        case "k":
+                            t=ctok(t);
+                            break;
+                            break; }
+                case "k":
                         switch (to){
                             case "c":
                                 t=ktoc(t);
@@ -94,8 +103,8 @@
                             case "f":
                                 t=ktof(t);
                                 break;
-                        }
-                    case "f":
+                        break;}
+                case "f":
                         switch (to){
                             case "c":
                                 t=ftoc(t);
@@ -103,19 +112,11 @@
                             case "k":
                                 t=ftok(t);
                                 break;
-                          }
-                    case "c":
-                        switch (to){
-                            case "f":
-                                t=ctof(t);
-                                break;
-                            case "k":
-                                t=ctok(t);
-                                break;
-                        }
+                          break;}
+
                 default:
-                    t=t;
-                }
+                        t=t;
+                    break;}
             document.getElementById("output").innerHTML = t;
         }
 </script>
